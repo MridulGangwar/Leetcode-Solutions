@@ -1,0 +1,25 @@
+from collections import deque
+class Solution:
+    def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
+        
+        if start[0]==destination[0] and start[1]==destination[1]:
+            return True
+        
+        dirs = [[0,1],[0,-1],[1,0],[-1,0]]
+        x,y = start[0],start[1]
+        
+        for dx,dy in dirs:
+            nx = x 
+            ny = y 
+            while 0<=nx+dx  <len(maze) and 0<=ny+dy  <len(maze[0]) and maze[nx+dx][ny+dy]!=1:
+                nx+=dx  
+                ny+=dy  
+                
+            if maze[nx][ny]!=0:
+                continue
+            
+            maze[nx][ny]=5
+            
+            if self.hasPath(maze,[nx,ny],destination):
+                return True
+        return False
