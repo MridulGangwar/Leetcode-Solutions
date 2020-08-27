@@ -18,3 +18,31 @@ class Solution:
             left-=1
             right+=1
         return right-left-1
+        
+        
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        longestP, n = "", len(s)
+        
+        for i in range(n):
+            first = self.middle(s,i,i)
+            second = self.middle(s,i,i+1)
+            if len(first)>len(second):
+                temp = first
+            else:
+                temp= second
+            if len(temp)>len(longestP):
+                longestP = temp
+                
+        return longestP
+            
+    def middle(self,s,left,right):
+        
+        while left>=0 and right<len(s) and s[left]==s[right]:
+            left-=1
+            right+=1
+        
+        return s[left+1:right]
+            
+        
+        
