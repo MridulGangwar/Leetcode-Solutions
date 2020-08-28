@@ -25,3 +25,36 @@ class CombinationIterator:
 # obj = CombinationIterator(characters, combinationLength)
 # param_1 = obj.next()
 # param_2 = obj.hasNext()
+
+
+
+from collections import deque
+class CombinationIterator:
+
+    def __init__(self, characters: str, combinationLength: int):
+        def recursive(st,idx,length):
+            
+            if length==0:
+                self.combination.append(st)    
+            else:
+                if idx>=len(characters):
+                    return
+                else:
+                    recursive(st+characters[idx],idx+1,length-1)
+                    recursive(st,idx+1,length)
+            
+        self.combination = collections.deque()
+        recursive("",0,combinationLength)
+        
+        
+    def next(self) -> str:
+        return self.combination.popleft()
+
+    def hasNext(self) -> bool:
+        return self.combination 
+
+
+# Your CombinationIterator object will be instantiated and called as such:
+# obj = CombinationIterator(characters, combinationLength)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()
